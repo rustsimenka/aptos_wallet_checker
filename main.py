@@ -1,9 +1,16 @@
-from check_wallet import WalletNft, WalletCoins
+from check_wallets import WalletCoins, WalletNfts
 from open_txt import my_wallets
+from pprint import pprint
 
 
 for wallet in my_wallets:
-    my_wallet_nft = WalletNft(wallet)
+    my_wallet_coins = WalletCoins(wallet)
+    my_wallet_coins.check_token()
+    print('-----------------')
+    my_wallet_nft = WalletNfts(wallet)
+
     my_wallet_nft.check_nft()
-    my_wallet = WalletCoins(wallet)
-    my_wallet.check_coins()
+
+
+
+
