@@ -5,4 +5,3 @@ with open('my_api.txt') as my_api_file:
 # Читаем все кошельки из файла и сохраняем их в список
 with open('wallets.txt') as my_wallets:
     my_wallets = [line.strip() for line in my_wallets]
-

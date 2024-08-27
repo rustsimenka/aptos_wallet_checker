@@ -1,4 +1,5 @@
 import requests
+import datetime
 from pprint import pprint
 from open_txt import api_key
 
@@ -16,7 +17,7 @@ class WalletCoins:
         url_coins = "https://mainnet-aptos-api.moralis.io/wallets/coins"
         dict_response = requests.get(url=url_coins, headers=self.headers, params=self.params).json()
 
-        print(f'в кошельке {self.wallet}:')
+        print(f'в кошельке {self.wallet} на {datetime.date.today()}:')
         print()
         sum_usd = 0.0
         dict_tokens = {}
@@ -26,10 +27,8 @@ class WalletCoins:
             amount_coin = float(coin['amount']) / 100000000
             name_coin = coin['coin_type'].split('::')
             name_coin = name_coin[2]
-            token_price = requests.get(
-                f'https://api.geckoterminal.com/api/v2/simple/networks/aptos/token_price/{address_coin}')
-            token_price = token_price.json()
 
+            token_price = requests.get(f'https://api.geckoterminal.com/api/v2/simple/networks/aptos/token_price/{address_coin}').json()
 
             try:
                 price = float(token_price['data']['attributes']['token_prices'][f'{address_coin}'])
@@ -66,13 +65,3 @@ class WalletCoins:
 
         print(f'всего в кошельке {total_nfts} NFT:')
         print(*dict_nfts.items(), sep='\n')
-
-
-
-
-
-
-
-
-
-
